@@ -1,0 +1,17 @@
+import React from 'react';
+import  {Link, IndexLink} from 'react-router';
+
+// Stateless functional component/ Presentational component
+// Link the home url to the IndexRoute "/" which renders the HomePage component
+// When this component is active, set a className of active
+const Header = () => {
+  return (
+    <nav>
+      <IndexLink to="/" activeClassName="active">Home</IndexLink>
+      {" | "}
+      <Link to="about" activeClassName="active">About</Link>
+    </nav>
+  );
+};
+
+export default Header;
