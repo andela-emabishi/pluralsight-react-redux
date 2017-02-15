@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import Header from './common/header';
 
-// Top level component
+// Top level component for our application
 class App extends React.Component {
   render() {
     return (

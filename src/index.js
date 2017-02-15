@@ -1,4 +1,4 @@
-import 'babel-polyfill'; // Handle set of es6 features that babal cannot transpile automatically
+import 'babel-polyfill'; // Handle set of es6 features that babal cannot transpile automatically i.e. Object.assign
 import React from 'react';
 import {render} from 'react-dom'; // Import render so that we can use it in all our components
 import {Router, browserHistory} from 'react-router'; //Use browser history for urls- no hash
