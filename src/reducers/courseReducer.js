@@ -5,9 +5,11 @@
 // Remember, we shouldn't mutate state directly
 // We should always have  default statement that returns state
 
+import * as actionTypes from '../actions/actionTypes';
+
 export default function courseReducer(state = [], action) {
   switch (action.type) {
-    case 'CREATE_COURSE':
+    case actionTypes.CREATE_COURSE: // i.e. CREATE_COURSE action type
     // Return new array with mutated state
       return [...state,
         Object.assign({}, action.course)
