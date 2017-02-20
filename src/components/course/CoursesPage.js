@@ -2,79 +2,31 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux'; // Used to creact components that can interact with redux
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import CourseList from './CourseList';
 
 class CoursesPage extends React.Component {
   // Initialise state in the component with a constructor
   constructor(props, context) {
     // keyword super is used to call functions on an object's parent i.e. in React.Component
     super(props, context);
-    // this refers to the CoursesPage class while inside the constructor
-    this.state = {
-      // Set initial title state to null
-      course: { title: '' }
-    };
-    // bind this context of change handler in form to this context of class/component
-    // If we don't do this, the this context of the form will be taken as default
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onClickSave = this.onClickSave.bind(this);
-  }
-
-  onTitleChange(event) {
-    // this needs to be bound to the class/component not to the context of the form
-    // console.log('onTitleChange', this)
-    const course = this.state.course;
-    // Set course value in state to value of course title in input form
-    course.title = event.target.value;
-    // Update state
-    this.setState({ course: course });
-  }
-
-  onClickSave() {
-    // dispatch create course function
-    // this.props.dispatch(actionCreator(param))
-    //If mapDispatchToProps not passed into connect, a prop called dispatch is made available
-    // this.props.dispatch(courseActions.createCourse(this.state.course));
-
-    // If mapDispatchToProps specified as aargument in connect functionm the action/action creator function is passed into the component as
-    // a prop and can be accessed directly
-    // this.props.createCourse(this.state.course);
-    this.props.actions.createCourse(this.state.course);
-  }
-
-  courseRow(course, index) {
-    // Each iteration that renders a row must have a unique key
-    // In this case, the key maps to the index of each element in the array
-    // so that react can properly keep track of which row has been rendered
-    // This function is called for each course row
-    return <div key={index}>{course.title}</div>;
-  }
+    }
 
   render() {
+    // Below same as calling this.props.courses to pass down courses array as prop
+    // const {courses} = this.props;
+    // courses={courses}
+
     return (
       <div>
         <h1>Courses</h1>
-        {this.props.courses.map(this.courseRow)}
-        <h2>Add Course</h2>
-        <input
-          type="text"
-          onChange={this.onTitleChange}
-          value={this.state.course.title}
-        />
-
-        <input
-          type="submit"
-          value="Save"
-          onClick={this.onClickSave}
-        />
+        <CourseList courses={this.props.courses} />
       </div>
     );
   }
 }
 
-// propType validation
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
-  // createCourse: PropTypes.func.isRequired
   actions: PropTypes.object.isRequired
   // connect no longer injects dispatch as a property of the component because
   // mapDispatchToProps has been explicitly passed to connect
