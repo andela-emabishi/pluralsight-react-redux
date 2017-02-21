@@ -47,15 +47,14 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch) {
-  // Determines what actions are available in our component
+  // Determines what actions are available to our component
   // Maps actions to props so that they are available to our component as props
-  // Action: call to Dispatch
+  // Prop: function call to Dispatch(action)
   // Action wrapped in a call to dispatch so that when the action is triggered, the reducer is made aware
   return {
     // createCourse: course => dispatch(courseActions.createCourse(course))
-
     // Map dispatch to props using redux bindActionCreators
-    // Wraps all actions in a call to dispatch
+    // Wraps all actions/actionCreators in a call to dispatch
     actions: bindActionCreators(courseActions,dispatch)
   };
 }
