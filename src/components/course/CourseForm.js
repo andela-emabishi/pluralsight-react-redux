@@ -4,8 +4,8 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
 // CourseForm.propTypes = {
-//   course: PropTypes.object.isRequired,
-//   allAuthors: PropTypes.array,
+  // course: PropTypes.object.isRequired,
+  // allAuthors: PropTypes.array,
   // onSave: PropTypes.func.isRequired,
   // onChange: PropTypes.func.isRequired,
   // loading: PropTypes.bool,

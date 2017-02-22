@@ -20,6 +20,12 @@ class ManageCoursePage extends React.Component {
     this.saveCourse = this.saveCourse.bind(this);
   }
 
+  // Called anytime props change or when React thinks props have changed
+  componentWillReceiveProps(nextProps) {
+    // i.e. do this if props have changed - update state with new props if props have changed. If props haven't changed, do nothing
+    return this.props.course.id != nextProps.course.id ? this.setState({course: Object.assign({}, nextProps.course)}): null;
+  }
+
   updateCourseState(event) {
     // i.e. field = name
     const field = event.target.name;
@@ -66,7 +72,19 @@ ManageCoursePage.contextTypes = {
   router: PropTypes.object
 };
 
+function getCourseByID(courses, id) {
+  // Filter courses for the one with a specific id
+  // Filter always returns an array, so we stil have to pick the first
+  const course = courses.filter(course => course.id == id);
+  // If we don't find a matching course
+  return course ? course[0] : null;
+  // if (course) return course[0];
+  // return null;
+}
+
 function mapStateToProps(state,ownProps) {
+  console.log('OWN PROPS', ownProps);
+  const courseId = ownProps.params.id; // ownProps passed from reaact-router overarching component i.e. from path /course/:id
   let course = {
     id: '',
     watchHref: '',
@@ -75,6 +93,11 @@ function mapStateToProps(state,ownProps) {
     length: '',
     category: ''
   };
+
+// If course exists and courses have been loaded from the API
+  if (courseId && state.courses.length > 0) {
+    course = getCourseByID(state.courses, courseId);
+  }
   // Select input component expects object with value and text keys
   const authorsFormattedForDropDown = state.authors.map(author => {
     return {
