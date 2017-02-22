@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux'; // Used to creact components that can interact with redux
 import {bindActionCreators} from 'redux';
+import {browserHistory} from 'react-router';
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
 
@@ -9,7 +10,13 @@ class CoursesPage extends React.Component {
   constructor(props, context) {
     // keyword super is used to call functions on an object's parent i.e. in React.Component
     super(props, context);
+    // bind this context of change handler to this of method
+    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
+
+  redirectToAddCoursePage() {
+    browserHistory.push('/course');
+  }
 
   render() {
     // Below same as calling this.props.courses to pass down courses array as prop
@@ -19,6 +26,11 @@ class CoursesPage extends React.Component {
     return (
       <div>
         <h1>Courses</h1>
+        <input
+          type="submit"
+          value="Add Course"
+          className="btn btn-primary"
+          onClick={this.redirectToAddCoursePage} />
         <CourseList courses={this.props.courses} />
       </div>
     );

@@ -33,3 +33,31 @@ export function loadCourses() {
     });
   };
 }
+
+// Action creator to update courses
+export function updateCourseSuccess(course)  {
+  return {
+    type: actionTypes.UPDATE_COURSE_SUCCESS,
+    course
+  };
+}
+
+export function createCourseSuccess(course) {
+  return {
+    type: actionTypes.CREATE_COURSE_SUCCESS,
+    course
+  };
+}
+
+// Create or save course
+export function saveCourse(course) {
+  return function(dispatch) {
+      courseApi.saveCourse(course).then(savedCourse => {
+        course.id ? dispatch(updateCourseSuccess(savedCourse)) :
+        dispatch(createCourseSuccess(savedCourse));
+    }).catch(error => {
+      // If something wrong happens with the save, throw the error
+      throw (error);
+    });
+  };
+}
