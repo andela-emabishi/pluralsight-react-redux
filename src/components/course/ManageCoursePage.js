@@ -35,6 +35,8 @@ class ManageCoursePage extends React.Component {
     event.preventDefault();
     // all actions now mapped to props through mapDispatchToProps
     this.props.actions.saveCourse(this.state.course);
+    // After save, push '/courses' string to url to redirect user to courses route
+    this.context.router.push('/courses');
   }
 
   render() {
@@ -57,6 +59,11 @@ ManageCoursePage.propTypes = {
   // Array of objects
   authors: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
+};
+// Redirect user to coursesList when they've saved a course using contextTypes from rect-router
+// Makes react router context available to component
+ManageCoursePage.contextTypes = {
+  router: PropTypes.object
 };
 
 function mapStateToProps(state,ownProps) {
