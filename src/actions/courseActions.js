@@ -3,6 +3,7 @@
 
 import * as actionTypes from './actionTypes';
 import courseApi from '../api/mockCourseApi';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 // Action creator function wraps action in a function
 export function loadCoursesSuccess(courses) {
@@ -22,6 +23,8 @@ export function loadCoursesSuccess(courses) {
 // Instead of an action returning an object, it can now return a function
 export function loadCourses() {
   return function(dispatch) {
+    // dispatch the action as soon as the loadCourses function is triggered on page load at the entrypoint of the application
+    dispatch(beginAjaxCall());
     // courseApi.getAllCourses returns a promise, resolved by a then
     return courseApi.getAllCourses().then(courses => {
       // After the promise is resolved and we get the courses, dispatch the
@@ -52,6 +55,7 @@ export function createCourseSuccess(course) {
 // Create or save course
 export function saveCourse(course) {
   return function(dispatch) {
+      dispatch(beginAjaxCall());
       courseApi.saveCourse(course).then(savedCourse => {
         course.id ? dispatch(updateCourseSuccess(savedCourse)) :
         dispatch(createCourseSuccess(savedCourse));

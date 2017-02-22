@@ -1,6 +1,7 @@
 // Should have actions for create,update and delete authors
 import * as actionTypes from './actionTypes';
 import authorApi from '../api/mockAuthorApi';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 // Action creator
 // Returns an action which consists of a type and some data
@@ -17,6 +18,7 @@ export function loadAuthorsSuccess(authors) {
 // Action ==> Reducer ===> Store
 export function loadAuthors() {
   return function(dispatch) {
+    dispatch(beginAjaxCall());
     authorApi.getAllAuthors().then(function(authors) {
       // dispatch the action
       dispatch(loadAuthorsSuccess(authors));
