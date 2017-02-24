@@ -3,7 +3,7 @@
 
 import * as actionTypes from './actionTypes';
 import courseApi from '../api/mockCourseApi';
-import {beginAjaxCall} from './ajaxStatusActions';
+import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 // Action creator function wraps action in a function
 export function loadCoursesSuccess(courses) {
@@ -54,13 +54,16 @@ export function createCourseSuccess(course) {
 
 // Create or save course
 export function saveCourse(course) {
+  // console.log('Here I am');
+  // return createCourseSuccess(course);
   return function(dispatch) {
       dispatch(beginAjaxCall());
       courseApi.saveCourse(course).then(savedCourse => {
         course.id ? dispatch(updateCourseSuccess(savedCourse)) :
         dispatch(createCourseSuccess(savedCourse));
     }).catch(error => {
-      // If something wrong happens with the save, throw the error
+      // If something wrong happens with the save, throw the error i.e. promise rejection because title is too short
+      dispatch(ajaxCallError());
       throw (error);
     });
   };

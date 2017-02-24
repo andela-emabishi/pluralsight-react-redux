@@ -6,3 +6,10 @@ export function beginAjaxCall() {
     type: actionTypes.BEGIN_AJAX_CALL
   };
 }
+
+// Action creator for ajax errors
+export function ajaxCallError() {
+  return {
+    type: actionTypes.AJAX_CALL_ERROR
+  };
+}

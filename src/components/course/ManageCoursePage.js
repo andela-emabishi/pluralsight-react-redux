@@ -7,6 +7,8 @@ import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 
+import toastr from 'toastr';
+
 class ManageCoursePage extends React.Component {
   constructor(props, context) {
     super(props,context);
@@ -14,7 +16,8 @@ class ManageCoursePage extends React.Component {
     // Initialise the component state
     this.state = {
       course: Object.assign({}, this.props.course),
-      errors: {}
+      errors: {},
+      saving: false
     };
     this.updateCourseState = this.updateCourseState.bind(this);
     this.saveCourse = this.saveCourse.bind(this);
@@ -39,9 +42,29 @@ class ManageCoursePage extends React.Component {
 
   saveCourse(event) {
     event.preventDefault();
+    this.setState({ saving: true });
     // all actions now mapped to props through mapDispatchToProps
-    this.props.actions.saveCourse(this.state.course);
+    this.props.actions.saveCourse(this.state.course)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        // If error occurs with save, set saving back to false
+        this.setState({ saving: false });
+    });
+
     // After save, push '/courses' string to url to redirect user to courses route
+    // This might be a problem because immediately the user clicks the save button they are redirected to the course list
+    // Depending on the speed at which data is retrieved, this may happen long before an update is made to the course list
+    // page with a new or updated course
+    // We resolve this by creating a promise which only resolves when the course list pae has been updated with a
+    // newly created course or an updated course
+  }
+
+  redirect() {
+    // Redirect takes place after saving is complete so we toggle the boolean to false
+    this.setState({ saving: false });
+    toastr.success('Course Saved');
+    // Redirect the user to the /courses route
     this.context.router.push('/courses');
   }
 
@@ -54,6 +77,7 @@ class ManageCoursePage extends React.Component {
           errors={this.state.errors}
           onChange={this.updateCourseState}
           onSave={this.saveCourse}
+          saving={this.state.saving}
         />
       </div>
     );

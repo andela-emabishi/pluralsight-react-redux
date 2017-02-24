@@ -9,6 +9,7 @@ import {Router, browserHistory} from 'react-router'; //Use browser history for u
 import routes from './routes'; //Import routes to pass through parent route component
 import './styles/styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/toastr/build/toastr.min.css';
 
 const store = configureStore(); // Optionally pass initial state here
 // Provider component accepts store as prop and wraps top level router component
