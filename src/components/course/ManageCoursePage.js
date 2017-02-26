@@ -9,11 +9,11 @@ import CourseForm from './CourseForm';
 
 import toastr from 'toastr';
 
-class ManageCoursePage extends React.Component {
+export class ManageCoursePage extends React.Component {
   constructor(props, context) {
     super(props,context);
 
-    // Initialise the component state
+    // Initialise the component state§
     this.state = {
       course: Object.assign({}, this.props.course),
       errors: {},
@@ -40,8 +40,22 @@ class ManageCoursePage extends React.Component {
     });
   }
 
+  courseFormIsValid() {
+    let formIsValid = true;
+    let errors = {};
+
+    this.state.course.title.length < 5 ? errors.title = 'Title must be at least 5 characters.': errors.title = '';
+    formIsValid = false;
+    this.setState({ errors: errors});
+    return formIsValid;
+  }
+
   saveCourse(event) {
     event.preventDefault();
+    // If form is not valid, exit the function, don't bother saving
+    if(!this.courseFormIsValid()) {
+      return;
+    }
     this.setState({ saving: true });
     // all actions now mapped to props through mapDispatchToProps
     this.props.actions.saveCourse(this.state.course)

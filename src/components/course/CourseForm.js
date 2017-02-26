@@ -4,12 +4,12 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
 // CourseForm.propTypes = {
-  // course: PropTypes.object.isRequired,
-  // allAuthors: PropTypes.array,
-  // onSave: PropTypes.func.isRequired,
-  // onChange: PropTypes.func.isRequired,
-  // saving: PropTypes.bool,
-  // errors: PropTypes.object
+//   course: PropTypes.object.isRequired,
+//   allAuthors: PropTypes.array,
+//   onSave: PropTypes.func.isRequired,
+//   onChange: PropTypes.func.isRequired,
+//   saving: PropTypes.bool,
+//   errors: PropTypes.object
 // };
 
 // Props destructured
