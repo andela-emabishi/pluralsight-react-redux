@@ -6,6 +6,7 @@ import {connect} from 'react-redux'; // Provides functionality for components to
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
+import {authorsFormattedForDropDown} from '../../selectors/selectors';
 
 import toastr from 'toastr';
 
@@ -136,18 +137,21 @@ function mapStateToProps(state,ownProps) {
   if (courseId && state.courses.length > 0) {
     course = getCourseByID(state.courses, courseId);
   }
-  // Select input component expects object with value and text keys
-  const authorsFormattedForDropDown = state.authors.map(author => {
-    return {
-      value: author.id,
-      text: author.firstName + ' ' + author.lastName
-    };
-  });
+
+  // // Select input component expects object with value and text keys
+  // const authorsFormattedForDropDown = state.authors.map(author => {
+  //   return {
+  //     value: author.id,
+  //     text: author.firstName + ' ' + author.lastName
+  //   };
+  // });
+
   // props:state
   // State accessible as this.props.course
   return {
     course: course,
-    authors: authorsFormattedForDropDown
+    // authorsFormattedForDropDown extracted to a function in selectors/selectors.js
+    authors: authorsFormattedForDropDown(state.authors)
   };
 }
 

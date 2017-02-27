@@ -4,7 +4,9 @@ import App from './components/app';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import CoursesPage from './components/course/CoursesPage';
-import ManageCoursePage from './components/course/ManageCoursePage';
+import ManageCoursePage from './components/course/ManageCoursePage'; // eslint-disable-line import/no-named-as-default
+//Did this for testing - ManageCoursePage exported both as function and as default export
+// - Default export for running code, named export for testing the specific component
 
 // Always load the app component as the react view controller- top level component
 // that passes down route params as props
