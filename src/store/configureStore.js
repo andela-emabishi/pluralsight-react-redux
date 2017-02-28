@@ -12,6 +12,7 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     // Use middlewear to enhance the store i.e. add support
+    // redux immutable state invariant gives us warns us if we mutate state
     applyMiddleware(thunk, reduxImmutableStateInvariant())
   );
 }
