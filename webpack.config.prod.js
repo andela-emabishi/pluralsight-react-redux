@@ -23,7 +23,7 @@ export default {
   },
   plugins: [
     // Optimises order in which our files are bundled for optimal minification
-    new webpack.optimize.OcurrenceOrderPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
     // Makes global variables available to libraries that webpack is bundling
     // React checks to see if application is running in production mode so that it can optimise
     new webpack.DefinePlugin(GLOBALS),

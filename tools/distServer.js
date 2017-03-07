@@ -8,6 +8,7 @@ import compression from 'compression';
 const port = 3000;
 const app = express();
 
+// enables gzip compression further making bundle.js smaller
 app.use(compression());
 app.use(express.static('dist')); //serve static files from /dist
 

@@ -122,7 +122,7 @@ function getCourseByID(courses, id) {
 }
 
 function mapStateToProps(state,ownProps) {
-  console.log('OWN PROPS', ownProps);
+  // console.log('OWN PROPS', ownProps);
   const courseId = ownProps.params.id; // ownProps passed from reaact-router overarching component i.e. from path /course/:id
   let course = {
     id: '',

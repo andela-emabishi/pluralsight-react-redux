@@ -1,13 +1,13 @@
 import React, {PropTypes} from 'react';
 
 // SelectInput.propTypes = {
-  // name: PropTypes.string.isRequired,
-  // label: PropTypes.string.isRequired,
-  // onChange: PropTypes.func.isRequired,
-  // defaultOption: PropTypes.string,
-  // value: PropTypes.string,
-  // error: PropTypes.string,
-  // options: PropTypes.arrayOf(PropTypes.object)
+//   name: PropTypes.string.isRequired,
+//   label: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+//   defaultOption: PropTypes.string,
+//   value: PropTypes.string,
+//   error: PropTypes.string,
+//   options: PropTypes.arrayOf(PropTypes.object)
 // };
 
 const SelectInput = ({name, label, onChange, defaultOption, value, error, options}) => {
