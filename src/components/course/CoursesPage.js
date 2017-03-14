@@ -1,20 +1,26 @@
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux'; // Used to creact components that can interact with redux
+import {connect} from 'react-redux'; // Used to create components that can interact with redux
 import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
 
+// Container component. Interacts with Redux and passes down props to presentational components
+// React.Component is an abstract class. Hence we have to create a usable subclass
+// of it by extending it with our own class
+// Extends used to create a class as a child of another class. In this case CoursesPage subclasses React.Component
 class CoursesPage extends React.Component {
-  // Initialise state in the component with a constructor
   constructor(props, context) {
-    // keyword super is used to call functions on an object's parent i.e. in React.Component
+    // keyword super is used to call functions on an object's parent i.e. functions in React.Component
     super(props, context);
-    // bind this context of change handler to this of method
+    // Constructor needs to call super before using 'this'
+    // bind this context of change handler to this of class CoursesPage
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
 
   redirectToAddCoursePage() {
+    // When the add course button is clicked, this function is called
+    // It directs the user to the /course route
     browserHistory.push('/course');
   }
 
@@ -61,10 +67,12 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   // Determines what actions are available to our component
   // Maps actions to props so that they are available to our component as props
+  // PROPS: DISPATCH(ACTION)
   // Prop: function call to Dispatch(action)
   // Action wrapped in a call to dispatch so that when the action is triggered, the reducer is made aware
   return {
     // createCourse: course => dispatch(courseActions.createCourse(course))
+
     // Map dispatch to props using redux bindActionCreators
     // Wraps all actions/actionCreators in a call to dispatch
     actions: bindActionCreators(courseActions,dispatch)

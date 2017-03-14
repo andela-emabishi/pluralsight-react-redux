@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Header from './common/header';
 
 // Top level component for our application
+// Should always return {this.props.children} from top level Route component in index.js
 class App extends React.Component {
   render() {
     return (
@@ -23,8 +24,9 @@ App.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   return {
+    // For loading progress bar
     // props: state
-    // will return true if there are any ajax calls in progress and false f ot
+    // will return true if there are any ajax calls in progress and false if not
     loading: state.numAjaxCallsInProgress > 0
   };
 }

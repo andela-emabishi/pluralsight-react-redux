@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
+// Indexroute in routes.js, component routed to when user is at "/" route
 class HomePage extends React.Component {
   render() {
     return (

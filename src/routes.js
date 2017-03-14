@@ -11,7 +11,7 @@ import ManageCoursePage from './components/course/ManageCoursePage'; // eslint-d
 // Always load the app component as the react view controller- top level component
 // that passes down route params as props
 // Nest all components indside the app component
-// Use the Home Component when someone vists the "/" or default route
+// Use the Home Component when someone vists the "/" or default route i.e. IndexRoute == default route == HomePage
 // Query param :id introduced in ManageCoursesPage when one wants to edit an existing course
 export default (
   <Route path="/" component={App}>
