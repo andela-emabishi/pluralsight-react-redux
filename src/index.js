@@ -27,7 +27,8 @@ const store = configureStore(); // Optionally pass initial state here
 // Provider is a High level component that attaches the store to the react container components
 // Enables our container components connect to the redux store
 
-// Load courses as soon as application loads
+// Dispatch actions from store at entry point
+// in order to Load courses and authors as soon as application loads
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 

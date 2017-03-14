@@ -8,7 +8,8 @@ import ajaxCallsInProgress from './ajaxStatusReducer';
 
 const rootReducer = combineReducers({
   // define all reducers
-  courses, // courses: courses ==> ES6 shorthand property name
+  // courses key in state object influenced by courses parameter passed to combineReducers function
+  courses, // courses: courses ==> ES6 shorthand property name. The courses redcuer will handle the courses part of state
   authors,
   ajaxCallsInProgress
 });

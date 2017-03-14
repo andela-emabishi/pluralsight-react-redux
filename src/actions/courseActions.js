@@ -7,7 +7,7 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 // Action creator function wraps action in a function
 export function loadCoursesSuccess(courses) {
-  // Action consists of an action type and some data
+  // Action consists of an action type and some data. Only required property is type
   return {
     type: actionTypes.LOAD_COURSES_SUCCESS,
     // Same as course: course
@@ -54,7 +54,6 @@ export function createCourseSuccess(course) {
 
 // Create or save course
 export function saveCourse(course) {
-  // console.log('Here I am');
   // return createCourseSuccess(course);
   return function(dispatch) {
       dispatch(beginAjaxCall());

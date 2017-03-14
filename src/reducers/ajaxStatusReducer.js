@@ -8,7 +8,7 @@ export default function ajaxStatusReducer(state = initialState.numAjaxCallsInPro
   if (action.type == actionTypes.BEGIN_AJAX_CALL) {
     return state + 1;
   } else if (actionTypes.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {
-    // if the action tytpe ends in success, then the ajax call has been completed
+    // if the action type ends in success, then the ajax call has been completed
     // because the action has been dispatched successfully.
     // The function actionTypeEndsInSuccess will return true hence the code block will be executed
     // numAjaxCallsInProgress could also be reduced because of an ajax call error action being dispatched

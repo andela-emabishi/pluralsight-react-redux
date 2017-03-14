@@ -10,8 +10,16 @@ import CourseList from './CourseList';
 // of it by extending it with our own class
 // Extends used to create a class as a child of another class. In this case CoursesPage subclasses React.Component
 class CoursesPage extends React.Component {
+  // Initialise props and context in class by using constructor and super(props, context), otherwise, subsequent calls to
+  // {this.props.something} or {this.context} will result in undefined.
+  // i.e. instantiate props along with class on component insertion into DOM
+  // https://facebook.github.io/react/docs/react-component.html#constructor
+
+  // No need to have a constructor if you're not initislising state or binding contex
   constructor(props, context) {
     // keyword super is used to call functions on an object's parent i.e. functions in React.Component
+    // Super, referencing the parent class React.Component, is called with props and context
+    // in order to initialise the instance of the parent class with the arguments props and context
     super(props, context);
     // Constructor needs to call super before using 'this'
     // bind this context of change handler to this of class CoursesPage
@@ -54,7 +62,7 @@ CoursesPage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   // Should return portion of state to be exposed to component
-  // ownProps is object consisting of default react router children props passed down from main routing component
+  // ownProps is object consisting of default react router children props passed down from main routing component router
   return {
     // PROPS: STATE
     // Accessed in component as this.props.courses
@@ -80,7 +88,8 @@ function mapDispatchToProps(dispatch) {
 }
 /*
   * mapDispatchToProps used to delineate what actions you want exposed to your component
-  * If ommitted from call to the redux connect function, redux attaches a default dispatch property as a prop that
+  * If ommitted from call to the redux connect function, i.e. connect(mapStateToProps),
+  // redux attaches a default dispatch property as a component prop that
   * makes it possible to dispatch all the actions available to the component
 */
 
