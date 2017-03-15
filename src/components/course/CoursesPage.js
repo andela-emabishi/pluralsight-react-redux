@@ -45,6 +45,8 @@ CoursesPage.propTypes = {
  */
 function mapStateToProps(state, ownProps) {
   return {
+    // connect function will give mapStateToProps() access to the state object
+    // Courses Action Creator returns {type, courses}
     // courses key in state object influenced by courses parameter passed to combineReducers function
     courses: state.courses
   };

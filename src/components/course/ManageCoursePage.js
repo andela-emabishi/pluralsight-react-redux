@@ -1,8 +1,5 @@
-/*
-* Container component
-*/
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux'; // Provides functionality for components to connect to the store
+import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
@@ -20,7 +17,6 @@ export class ManageCoursePage extends React.Component {
       errors: {},
       saving: false
     };
-    // Bind this context of component to this context of global dom and changeHandlers
     this.updateCourseState = this.updateCourseState.bind(this);
     this.saveCourse = this.saveCourse.bind(this);
   }
