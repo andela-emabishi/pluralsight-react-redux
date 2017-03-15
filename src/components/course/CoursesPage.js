@@ -15,13 +15,18 @@ class CoursesPage extends React.Component {
   // i.e. instantiate props along with class on component insertion into DOM
   // https://facebook.github.io/react/docs/react-component.html#constructor
 
-  // No need to have a constructor if you're not initislising state or binding contex
+  // No need to have a constructor if you're not initialising state or binding context
+  // Subclass needs its own implementation of a constructor if it would like to inherit attributes of base/parent class
+  // and to initialise its own attributes at instantiation
   constructor(props, context) {
     // keyword super is used to call functions on an object's parent i.e. functions in React.Component
     // Super, referencing the parent class React.Component, is called with props and context
     // in order to initialise the instance of the parent class with the arguments props and context
+    // super() calls the constructor of the parent class. super(props,context) instantiates new class with attributes of parent class
+    // ES6 class constructors MUST call super if they are subclasses. http://cheng.logdown.com/posts/2016/03/26/683329
     super(props, context);
     // Constructor needs to call super before using 'this'
+    // this context is derived from the derived component class which derives it from an instantiation of the parent class
     // bind this context of change handler to this of class CoursesPage
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
